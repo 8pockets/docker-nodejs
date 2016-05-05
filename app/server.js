@@ -9,7 +9,7 @@ app.set('port', 5000);
 app.use(express.static(__dirname + '/public'));
 
 app.get('/', function(request, response) {
-
+/*
   mongoose.connect('mongodb://localhost:27017/foo');
 
   var Cat = mongoose.model('Cat', { name: String });
@@ -22,7 +22,7 @@ app.get('/', function(request, response) {
       console.log('meow');
     }
   });
-
+*/
   response.send('Hello World!')
 });
 
