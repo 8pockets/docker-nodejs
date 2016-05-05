@@ -1,3 +1,4 @@
-vendor
+vendor/
+logs/
 app/node_modules/
-logs
+app/npm-debug.log
