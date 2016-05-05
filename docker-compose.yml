@@ -1,0 +1,27 @@
+db:
+    image: mongo:3.3.5
+    ports:
+    - 27017:27017
+    command: "--smallfiles --logpath=/dev/null"
+    volumes:
+     - db:/data/db
+app:
+    build: ./app
+    tty: true
+    links:
+        - db
+    ports:
+        - 5000:5000
+    volumes:
+        - ./app:/usr/src/app
+        - ./logs/node_app/:/var/log/node_app/
+    working_dir: /usr/src/app/
+nginx:
+    image: nginx:1.10.0-alpine
+    ports:
+        - 8999:8080
+    links:
+        - app
+    volumes:
+        - ./logs/nginx/:/var/log/nginx/
+        - ./nginx/:/etc/nginx/conf.d/
