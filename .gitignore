@@ -1,4 +1,6 @@
+*.swp
+*.swo
 vendor/
-logs/
+logs/*
 app/node_modules/
 app/npm-debug.log

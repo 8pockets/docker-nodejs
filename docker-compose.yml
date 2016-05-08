@@ -1,20 +1,26 @@
-db:
-    image: mongo:3.3.5
+mysql:
+    restart: always
+    image: mysql:5.7
     ports:
-    - 27017:27017
-    command: "--smallfiles --logpath=/dev/null"
+        - 3306
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_USER: root
+        MYSQL_DATABASE: node_app
+        MYSQL_PASSWORD: root
     volumes:
-     - db:/data/db
+      - /data/mysql:/var/lib/mysql
 app:
     build: ./app
     tty: true
     links:
-        - db
+        - mysql
     ports:
         - 5000:5000
     volumes:
         - ./app:/usr/src/app
         - ./logs/node_app/:/var/log/node_app/
+        - /etc/localtime:/etc/localtime:ro
     working_dir: /usr/src/app/
 nginx:
     image: nginx:1.10.0-alpine
