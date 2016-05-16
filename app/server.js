@@ -31,9 +31,9 @@ app.get('/', function(request, response) {
   logger.verbose('どうでもいいこと');
   logger.info('じょうほう');
   logger.warn('やばい');
-  logger.error('すごくやばい');
+  logger.error('すごくやばい!!');
 
-  response.send('Hello World!');
+  response.send('Hello World!!!!!');
 });
 
 app.get('/mysql', function(request, response) {
@@ -53,6 +53,7 @@ app.get('/mysql', function(request, response) {
         logger.error(err);
         return;
     }
+    return;
   });
 
 });

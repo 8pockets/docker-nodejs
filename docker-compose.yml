@@ -16,12 +16,10 @@ app:
     links:
         - mysql
     ports:
-        - 5000:5000
+        - 5000
     volumes:
-        - ./app:/usr/src/app
+        - ./app/:/usr/src/app/
         - ./logs/node_app/:/var/log/node_app/
-        - /etc/localtime:/etc/localtime:ro
-    working_dir: /usr/src/app/
 nginx:
     image: nginx:1.10.0-alpine
     ports:

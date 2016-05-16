@@ -9,10 +9,9 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Bundle app source
-#COPY . /usr/src/app
+#COPY . /usr/src/app/
 
 #log file
 RUN mkdir -p /var/log/node_app/
 
-EXPOSE 8080
 CMD [ "npm", "start"]
