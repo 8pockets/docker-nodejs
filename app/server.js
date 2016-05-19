@@ -18,7 +18,7 @@ var logger = new (winston.Logger)({
       timestamp: true // 時間つき
     }),
       new (winston.transports.File)({
-      filename: '/var/log/node_app/node_app.log',
+      filename: '/home/app/var/log/node_app/node_app.log',
       json: false
     })
     ]
@@ -33,7 +33,7 @@ app.get('/', function(request, response) {
   logger.warn('やばい');
   logger.error('すごくやばい!!');
 
-  response.send('Hello World!!!!!');
+  response.send('Hello World!!!');
 });
 
 app.get('/mysql', function(request, response) {

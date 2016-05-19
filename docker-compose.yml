@@ -12,14 +12,18 @@ mysql:
       - /data/mysql:/var/lib/mysql
 app:
     build: ./app
+    command: /home/app/src/node_modules/.bin/nodemon server.js
+    environment:
+      NODE_ENV: development
     tty: true
     links:
         - mysql
     ports:
         - 5000
     volumes:
-        - ./app/:/usr/src/app/
-        - ./logs/node_app/:/var/log/node_app/
+        - ./app:/home/app/src/
+        - ./logs/node_app/:/home/app/var/log/node_app/
+        - /home/app/src/node_modules
 nginx:
     image: nginx:1.10.0-alpine
     ports:

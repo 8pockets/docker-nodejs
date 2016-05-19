@@ -1,17 +1,22 @@
-FROM node:argon
+FROM node:6.2.0
+
+RUN useradd --user-group --create-home --shell /bin/false app &&\
+  npm install --global npm@3.9.0
 
 # Create app directory
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
+ENV HOME=/home/app
 
-# Install app dependencies
-COPY package.json /usr/src/app/
+COPY package.json npm-shrinkwrap.json $HOME/src/
+
+RUN chown -R app:app $HOME/*
+
+USER app
+WORKDIR $HOME/src
 RUN npm install
 
-# Bundle app source
-#COPY . /usr/src/app/
+USER root
+COPY . $HOME/src
+RUN chown -R app:app $HOME/*
+USER app
 
-#log file
-RUN mkdir -p /var/log/node_app/
-
-CMD [ "npm", "start"]
+CMD [ "node", "server.js"]

@@ -1,0 +1,6 @@
+app:
+  build: ./app
+  environment:
+    NODE_ENV: production
+  ports:
+    - 5000
